@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link, animateScroll as scroll} from 'react-scroll'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 
 const Navbar = () => {
@@ -6,7 +7,9 @@ const Navbar = () => {
     const [nav, setNav] = useState(false)
     const handleClick = () => 
         setNav(!nav);
-        console.log(nav);
+
+    const handleClose = () =>
+        setNav(!nav);
 
   return (
     <div className='w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg'>
@@ -18,11 +21,11 @@ const Navbar = () => {
                     BRAND.
                 </h1>
                 <ul className='hidden md:flex'>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Support</li>
-                    <li>Platforms</li>
-                    <li>Pricing</li>
+                    <li className='cursor-pointer'><Link to='home' smooth={true} duration={500}>Home</Link></li>
+                    <li className='cursor-pointer'><Link to='about' smooth={true} offset={-200} duration={500}>About</Link></li>
+                    <li className='cursor-pointer'><Link to='support' smooth={true} offset={-50} duration={500}>Support</Link></li>
+                    <li className='cursor-pointer'><Link to='platforms' smooth={true} offset={-120} duration={500}>Platforms</Link></li>
+                    <li className='cursor-pointer'><Link to='pricing' smooth={true} offset={-50} duration={500}>Pricing</Link></li>
                 </ul>
             </div>
 
@@ -38,11 +41,12 @@ const Navbar = () => {
         </div>
 
         <ul className={!nav ? 'hidden' : 'absolute bg-zinc-200 w-full px-8'}>
-            <li className='border-b-2 border-zinc-300 w-full'>Platforms</li>
-            <li className='border-b-2 border-zinc-300 w-full'>Home</li>
-            <li className='border-b-2 border-zinc-300 w-full'>About</li>
-            <li className='border-b-2 border-zinc-300 w-full'>Support</li>
-            <li className='border-b-2 border-zinc-300 w-full'>Pricing</li>
+            <li className='cursor-pointer border-b-2 border-zinc-300 w-full'><Link onClick={handleClose} to='home' smooth={true} duration={500}>Home</Link></li>
+            <li className='cursor-pointer border-b-2 border-zinc-300 w-full'><Link onClick={handleClose} to='about' smooth={true} offset={-200} duration={500}>About</Link></li>
+            <li className='cursor-pointer border-b-2 border-zinc-300 w-full'><Link onClick={handleClose} to='support' smooth={true} offset={-50} duration={500}>Support</Link></li>
+            <li className='cursor-pointer border-b-2 border-zinc-300 w-full'><Link onClick={handleClose} to='platforms' smooth={true} offset={-120} duration={500}>Platforms</Link></li>
+            <li className='cursor-pointer border-b-2 border-zinc-300 w-full'><Link onClick={handleClose} to='pricing' smooth={true} offset={-50} duration={500}>Pricing</Link></li>
+
 
             <div className='flex flex-col my-4'>
                 <button className='bg-transparent text-indigo-600 px-8 py-3 mb-4'>Sign In</button>
